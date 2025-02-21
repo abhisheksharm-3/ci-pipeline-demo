@@ -6,6 +6,31 @@ on:
       - main
 
 jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +45,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, analyze]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -30,6 +55,13 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t abhisheksan/myapp:latest .
+
+      - name: Anchore Container Scan
+        uses: anchore/scan-action@v3
+        with:
+          image: abhisheksan/myapp:latest
+          fail-build: true
+          severity-cutoff: high
 
       - name: Push to Docker Hub
         run: docker push abhisheksan/myapp:latest
