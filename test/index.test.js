@@ -1,7 +1,7 @@
-const request = require("supertest");
-const http = require("http");
+import request from "supertest";
+import { createServer } from "http";
 
-const server = http.createServer((req, res) => {
+const server = createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end("Hello, CI/CD Pipeline!");
 });
