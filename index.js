@@ -1,6 +1,6 @@
-import { createServer } from "http";
+const http = require("http");
 
-const server = createServer((req, res) => {
+const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end("Hello, CI/CD Pipeline!");
 });
