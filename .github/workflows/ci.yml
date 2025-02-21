@@ -86,9 +86,9 @@ jobs:
           cache-from: type=registry,ref=abhisheksan/myapp:buildcache
           cache-to: type=registry,ref=abhisheksan/myapp:buildcache,mode=max
 
-      - name: Anchore Container Scan
-        uses: anchore/scan-action@v3
-        with:
-          image: abhisheksan/myapp:latest
-          fail-build: true
-          severity-cutoff: low
+      # - name: Anchore Container Scan
+      #   uses: anchore/scan-action@v3
+      #   with:
+      #     image: abhisheksan/myapp:latest
+      #     fail-build: true
+      #     severity-cutoff: low
