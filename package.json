@@ -1,0 +1,25 @@
+{
+  "name": "ci-cd-pipeline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhisheksharm-3/ci-pipeline-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/abhisheksharm-3/ci-pipeline-demo/issues"
+  },
+  "homepage": "https://github.com/abhisheksharm-3/ci-pipeline-demo#readme",
+  "description": "",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
